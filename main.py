@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from core.database import Base, engine
-from api import category
+from api import category, auth
 from models.customer import Customer
 from models.dish import Dish
 from models.order import Order
@@ -11,6 +11,10 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Resturant API", version="1.0")
 
 app.include_router(category.router)
+
+
+# <-----  Auth Service  ---->
+app.include_router(auth.router)
 
 # this api is for check api health
 @app.get("/health")

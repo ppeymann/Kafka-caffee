@@ -7,6 +7,9 @@ class BaseRepository:
     
     def get(self, id: int):
         return self.db.query(self.model).filter(self.model.id==id).first()
+
+    def get_by(self, **kwargs):
+        return self.db.query(self.model).filter_by(**kwargs).first()
     
     def get_all(self):
         return self.db.query(self.model).all()
